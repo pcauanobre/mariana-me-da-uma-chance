@@ -935,7 +935,20 @@ function toggleMotivo(id){
     el.querySelector('.motivo-label').textContent = motivoTitulos[id];
     burstHearts(Math.random()*innerWidth, Math.random()*innerHeight);
     if(motivosAbertos >= 5){
-      document.getElementById('motivosNextBtn').classList.add('show');
+      var btn = document.getElementById('motivosNextBtn');
+      btn.classList.add('show');
+      setTimeout(function(){
+        btn.scrollIntoView({ behavior:'smooth', block:'center' });
+      }, 350);
+    } else {
+      var ids = ['m1','m2','m3','m4','m5'];
+      var idx = ids.indexOf(id);
+      var next = document.getElementById(ids[idx+1]);
+      if(next){
+        setTimeout(function(){
+          next.scrollIntoView({ behavior:'smooth', block:'center' });
+        }, 350);
+      }
     }
   }
 }
